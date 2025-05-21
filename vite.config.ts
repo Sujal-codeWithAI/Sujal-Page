@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig({
   server: {
     host: true,
-    port: 8080,
+    port: 4000,
     strictPort: true,
     open: false,
     proxy: {},
@@ -19,7 +19,12 @@ export default defineConfig({
     strictPort: true,
     cors: true,
   },
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+      jsxImportSource: 'react'
+    })
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
