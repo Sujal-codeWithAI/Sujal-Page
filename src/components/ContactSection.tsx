@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import emailjs from '@emailjs/browser';
 
@@ -12,6 +12,11 @@ const ContactSection = () => {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +38,8 @@ const ContactSection = () => {
           message: message,
           to_name: "Sujal",
           reply_to: email,
-        }
+        },
+        EMAILJS_PUBLIC_KEY // Add the public key here
       );
 
       toast.success("Message sent successfully!");
