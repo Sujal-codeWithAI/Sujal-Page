@@ -95,24 +95,26 @@
   filter: drop-shadow(0 2px 4px rgba(76, 201, 240, 0.1));
 }
 
-.nav-item {
+/* Update the nav-link styles */
+.nav-link {
   position: relative;
-  font-weight: 500;
+  display: inline-block;
+  transition: color 0.3s ease;
 }
 
-.nav-item::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #33c3f0;
-  transition: width 0.3s ease;
+/* Remove old nav-item styles */
+.nav-item,
+.nav-item:hover,
+.nav-item::after,
+.nav-item:hover::after,
+.nav-item.active::after,
+.nav-item.active {
+  all: unset;
 }
 
-.nav-item:hover::after, .nav-item.active::after {
-  width: 100%;
+/* Add new hover effect */
+.nav-link:hover + span {
+  transform: scaleX(1);
 }
 
 .project-card {
