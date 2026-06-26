@@ -5,14 +5,36 @@ import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+const TITLES = ["Backend Developer", "AI Engineer", "Python Developer", "ML Enthusiast"];
+
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => setMousePosition({ x: e.clientX, y: e.clientY });
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // Typewriter effect
+  useEffect(() => {
+    const current = TITLES[titleIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+    if (!deleting && displayed.length < current.length) {
+      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80);
+    } else if (!deleting && displayed.length === current.length) {
+      timeout = setTimeout(() => setDeleting(true), 1800);
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45);
+    } else if (deleting && displayed.length === 0) {
+      setDeleting(false);
+      setTitleIndex((i) => (i + 1) % TITLES.length);
+    }
+    return () => clearTimeout(timeout);
+  }, [displayed, deleting, titleIndex]);
 
   const handleDownloadCV = async () => {
     try {
@@ -85,7 +107,8 @@ const HeroSection = () => {
                 <span className="gradient-text glow-text">Sujal Raut</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 font-medium mt-2">
-                Software Developer & <span className="text-portfolio-bright-blue">AI Enthusiast</span>
+                <span className="text-portfolio-bright-blue">{displayed}</span>
+                <span className="inline-block w-0.5 h-5 bg-portfolio-bright-blue ml-0.5 animate-pulse align-middle" />
               </p>
             </motion.div>
 

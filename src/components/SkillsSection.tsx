@@ -153,7 +153,9 @@ const SkillsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="flex flex-col gap-6"
           >
+            <div>
             <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
               <span className="bg-portfolio-bright-blue/20 text-portfolio-bright-blue p-2 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -177,6 +179,43 @@ const SkillsSection = () => {
                 </motion.span>
               ))}
             </div>
+            </div>
+
+            {/* Currently Learning */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="rounded-2xl border border-portfolio-bright-blue/20 bg-gradient-to-br from-portfolio-bright-blue/8 to-portfolio-purple/8 p-5"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-2 h-2 rounded-full bg-portfolio-bright-blue animate-pulse" />
+                <p className="text-xs font-bold text-portfolio-bright-blue uppercase tracking-widest">Currently Exploring</p>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { label: "Deep Learning", sub: "Neural networks & model architectures", icon: "🧠" },
+                  { label: "LLM & Prompt Engineering", sub: "Working with large language models", icon: "💬" },
+                  { label: "MLOps", sub: "Model deployment & monitoring pipelines", icon: "🔁" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + i * 0.1 }}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-white/4 hover:bg-white/8 border border-white/8 hover:border-portfolio-bright-blue/30 transition-all duration-300"
+                  >
+                    <span className="text-xl flex-shrink-0">{item.icon}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-white">{item.label}</p>
+                      <p className="text-xs text-gray-500">{item.sub}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Tools & Technologies */}

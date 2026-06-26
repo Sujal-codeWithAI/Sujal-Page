@@ -31,10 +31,12 @@ const AboutSection = () => {
   ];
 
   const expertise = [
-    { label: "Backend Development (Django / FastAPI)", pct: 88 },
-    { label: "Python & REST APIs", pct: 85 },
-    { label: "Database Management (MySQL)", pct: 82 },
-    { label: "AI & Machine Learning", pct: 78 },
+    { label: "Backend Development", icon: "⚙️" },
+    { label: "Python & REST APIs", icon: "🐍" },
+    { label: "Database Management", icon: "🗄️" },
+    { label: "AI & Machine Learning", icon: "🤖" },
+    { label: "Cloud & Deployment", icon: "☁️" },
+    { label: "Data Analysis", icon: "📊" },
   ];
 
   const info = [
@@ -131,23 +133,19 @@ const AboutSection = () => {
           >
             <div className="bg-gradient-to-br from-portfolio-blue/30 to-portfolio-purple/20 rounded-2xl p-8 border border-white/10 shadow-2xl">
               <h3 className="text-xl font-bold mb-8 text-white">My Expertise</h3>
-              <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
                 {expertise.map((item, i) => (
-                  <div key={item.label}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium text-gray-300">{item.label}</span>
-                      <span className="text-sm font-semibold text-portfolio-bright-blue">{item.pct}%</span>
-                    </div>
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${item.pct}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: i * 0.15, ease: "easeOut" }}
-                        className="h-full rounded-full bg-gradient-to-r from-portfolio-bright-blue to-portfolio-purple"
-                      />
-                    </div>
-                  </div>
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.4 }}
+                    className="flex flex-col gap-2 p-4 rounded-xl bg-white/8 border border-white/10 hover:border-portfolio-bright-blue/40 hover:bg-white/12 transition-all duration-300"
+                  >
+                    <span className="text-2xl">{item.icon}</span>
+                    <p className="text-sm font-semibold text-white leading-tight">{item.label}</p>
+                  </motion.div>
                 ))}
               </div>
             </div>
