@@ -129,13 +129,13 @@ const HeroSection = () => {
               transition={{ delay: 0.65 }}
               className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start"
             >
-              <Button
+              <button
                 onClick={handleDownloadCV}
                 className="group bg-portfolio-bright-blue hover:bg-portfolio-bright-blue/90 text-white px-7 py-3 rounded-xl flex items-center gap-2 font-semibold shadow-lg shadow-portfolio-bright-blue/20 hover:shadow-portfolio-bright-blue/40 transition-all duration-300"
               >
                 Download CV
                 <Download className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
-              </Button>
+              </button>
 
               <ScrollLink to="projects" smooth duration={500} offset={-80}>
                 <button className="group px-7 py-3 rounded-xl border border-white/20 text-gray-300 hover:text-white hover:border-portfolio-bright-blue/50 hover:bg-portfolio-bright-blue/8 flex items-center gap-2 font-semibold transition-all duration-300 w-full sm:w-auto justify-center">

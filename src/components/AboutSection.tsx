@@ -116,12 +116,12 @@ const AboutSection = () => {
               ))}
             </div>
 
-            <Button
+            <button
               onClick={handleDownloadCV}
-              className="bg-portfolio-bright-blue hover:bg-portfolio-bright-blue/90 text-white px-6 py-2.5 rounded-xl flex items-center gap-2 font-semibold shadow-lg shadow-portfolio-bright-blue/20 transition-all"
+              className="bg-portfolio-bright-blue hover:bg-portfolio-bright-blue/90 text-white px-7 py-3 rounded-xl flex items-center gap-2 font-semibold shadow-lg shadow-portfolio-bright-blue/20 transition-all"
             >
               Download Resume <Download className="h-4 w-4" />
-            </Button>
+            </button>
           </motion.div>
 
           {/* Right: Expertise bars */}
